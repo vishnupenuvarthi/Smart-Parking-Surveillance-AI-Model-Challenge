@@ -1,0 +1,4 @@
+<script>start("/Users/vishnupenuvarthi/Desktop/Smart Parking/clf-data/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("empty","empty",1,97504,"95.2 kB",1668946186,"20/11/2022, 17:39:46");</script>
+<script>addRow("not_empty","not_empty",1,97504,"95.2 kB",1668946190,"20/11/2022, 17:39:50");</script>

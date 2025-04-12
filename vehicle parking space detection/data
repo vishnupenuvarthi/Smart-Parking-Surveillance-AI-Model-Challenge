@@ -1,0 +1,6 @@
+<script>start("/Users/vishnupenuvarthi/Desktop/Smart Parking/data/");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("parking_1920_1080_loop.mp4","parking_1920_1080_loop.mp4",0,231024876,"220 MB",1667925956,"08/11/2022, 22:15:56");</script>
+<script>addRow("parking_1920_1080.mp4","parking_1920_1080.mp4",0,13353047,"12.7 MB",1667925014,"08/11/2022, 22:00:14");</script>
+<script>addRow("parking_crop_loop.mp4","parking_crop_loop.mp4",0,12266016,"11.7 MB",1667997834,"09/11/2022, 18:13:54");</script>
+<script>addRow("parking_crop.mp4","parking_crop.mp4",0,1043379,"1019 kB",1667908726,"08/11/2022, 17:28:46");</script>
