@@ -1,6 +1,6 @@
 ---
 
-# 🚗 Parking Space Detection System
+# 🚗Vehicle Parking Space Detection System
 
 This project is a smart parking space detector that uses a pre-trained machine learning model (SVM) to detect whether a parking spot is **occupied** or **available** using video input. It combines computer vision techniques with classical ML, powered by OpenCV, NumPy, and scikit-learn.
 
