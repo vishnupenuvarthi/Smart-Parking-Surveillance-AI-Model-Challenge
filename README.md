@@ -174,4 +174,179 @@ _MERN Stack Developer | AI/ML Enthusiast_
 
 ---
 
-Let me know if you'd like a version for `README.md` file export or for your second project (`VisiAge Fall Detection System`) cleaned up in the same style!
+Absolutely! Here's the cleaned-up and consistently formatted version of your **VisiAge Fall Detection System** README, styled to match your Parking System one:
+
+---
+
+# 🧍‍♂️📉  Fall Detection System
+
+The  Fall Detection System** is a real-time application that uses computer vision techniques and the YOLO pose estimation model to detect falls in a video stream. It integrates with **Azure Blob Storage** for storing fall incident data and notifies a cloud API endpoint upon fall detection.
+
+---
+
+## 🧠 Features
+
+- ✅ **Real-time Fall Detection** using YOLO keypoint estimation.
+- ☁️ **Azure Blob Storage Integration** for saving fall metadata and clips.
+- 📡 **API Call to App Service** for alerting and analytics.
+- 📈 Works with **webcams or pre-recorded videos**.
+
+---
+
+## 🧬 Keypoint Detection
+
+The system identifies key body points to detect posture changes and fall incidents. Here's a visual of YOLO's keypoints:
+
+
+---
+
+## 📁 Folder Structure
+
+```
+visiage-fall-detection/
+│
+├── fall_detection.py
+├── models/
+│   └── yolov8n-pose.pt
+├── images/
+│   └── keypoints.png
+│   └── caringminds.jpg
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 2. Azure Blob Storage Configuration
+
+- Set up an Azure Storage account.
+- Create a container to store fall-related data.
+- Update the following variables in your code:
+
+```python
+AZURE_STORAGE_CONNECTION_STRING = "<your_connection_string>"
+CONTAINER_NAME = "<your_container_name>"
+```
+
+---
+
+### 3. Run the Code
+
+```bash
+python fall_detection.py
+```
+
+The system starts reading from your webcam (`source=0`). To use a video file instead, change the `source` variable in the code:
+
+```python
+source = "path/to/your/video.mp4"
+```
+
+---
+
+## ⚙️ Configuration Details
+
+### 📦 Model
+
+| Item         | Description                             |
+|--------------|-----------------------------------------|
+| Model Name   | YOLOv8n Pose                            |
+| Model Path   | `models/yolov8n-pose.pt`                |
+| Task         | Keypoint Detection                      |
+| FPS Default  | 10 FPS                                  |
+| Source       | `0` (webcam) or video path              |
+
+---
+
+### 🔧 Threshold Parameters
+
+You can tweak the following constants in the code under:
+
+```python
+# DEFINING VARIABLES AND CONSTANTS FOR FALLING/LAYING DOWN
+MIN_ELAPSED_TIME_THRESHOLD = 2  # seconds
+VIDEO_FPS = 10
+```
+
+### 📼 Frame Capturing Logic
+
+- Video before fall = `10 sec x 10 FPS = 100 frames`
+- Video after fall = `15 sec x 10 FPS = 150 frames`
+
+> ⚠️ For 30 FPS videos, adjust:
+> 
+> ```python
+> video_frames_before = 300
+> video_frames_after = 450
+> ```
+
+---
+
+## 🌐 API Integration
+
+When a fall is detected, the following data is sent via POST request:
+
+```json
+{
+  "incident_status": "Fall Detected",
+  "video_blob_name": "fall_clip_2024_04_12.mp4",
+  "timestamp": "2024-04-12T14:30:45Z"
+}
+```
+
+Update the endpoint URL in:
+
+```python
+url = "<your_app_service_endpoint>"
+```
+
+---
+
+## 🧪 Requirements
+
+```text
+ultralytics
+opencv-python
+azure-storage-blob
+numpy
+matplotlib
+```
+
+To generate this:
+
+```bash
+pip freeze > requirements.txt
+```
+
+---
+
+## 🧾 Sample Output Behavior
+
+| Scenario          | Result                                |
+|-------------------|----------------------------------------|
+| Normal Movement   | System continues monitoring            |
+| Fall Detected     | Saves fall video, uploads to Azure, triggers API |
+| Webcam Lost       | Displays an error or halts processing  |
+
+---
+
+
+
+## 👨‍💻 Developed By
+
+**Penuvarthi Guru Vishnu Sai**  
+_MERN Stack Developer | AI/ML Enthusiast_  
+🎓 CSVTU | Specialization: Data Science  
+📫 [LinkedIn](https://linkedin.com/in/your-link) • 💻 [GitHub](https://github.com/your-username)
+
+---
