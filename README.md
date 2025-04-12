@@ -1,11 +1,8 @@
-Sure Vishnu! Here's your entire content **restructured, formatted cleanly, and ready to paste directly into your `README.md`** file on GitHub. All code blocks, headings, lists, and tables are correctly formatted using GitHub Markdown standards.
-
 ---
 
-```markdown
-# 🚗 Vehicle Parking Space Detection System
+# 🚗 Parking Space Detection System
 
-This project is a smart parking space detection system that utilizes traditional machine learning techniques to determine whether a parking spot is **occupied** or **empty** using video input. It uses OpenCV for image processing, NumPy for array operations, and a pre-trained **SVM (Support Vector Machine)** model for classification.
+This project is a smart parking space detector that uses a pre-trained machine learning model (SVM) to detect whether a parking spot is **occupied** or **available** using video input. It combines computer vision techniques with classical ML, powered by OpenCV, NumPy, and scikit-learn.
 
 ---
 
@@ -14,28 +11,30 @@ This project is a smart parking space detection system that utilizes traditional
 ```
 vehicle-parking-space-detection/
 │
-├── data/
-│   └── parking_1920_1080_loop.mp4       # Input video
-├── model.p                              # Trained SVM model
-├── mask_1920_1080.png                   # Binary mask for ROI
-├── main.py                              # Main detection script
-├── util.py                              # Utility functions
-├── requirements.txt                     # Python dependencies
-└── README.md                            # Project documentation
+├── main.py
+├── util.py
+├── model.p
+├── mask_1920_1080.png
+├── requirements.txt
+├── README.md
+└── data/
+    └── parking_1920_1080_loop.mp4
 ```
 
 ---
 
 ## ⚙️ System Configuration
 
-| Specification     | Details                        |
-|------------------|--------------------------------|
-| 💻 Device         | MacBook                        |
-| 🔧 Processor      | Apple Silicon / Intel          |
-| 🧠 RAM            | 8 GB                           |
-| 🖥 OS             | macOS (Sonoma / Ventura)       |
-| 🐍 Python Version | 3.11+                          |
-| 📦 Environment    | `venv` (virtual environment)   |
+### 💻 Laptop Specs (Development Environment)
+
+| Specification    | Details                                   |
+|------------------|-------------------------------------------|
+| Device           | MacBook                                    |
+| Processor        | Apple Silicon / Intel                     |
+| RAM              | 8 GB                                       |
+| OS               | macOS (e.g., Sonoma or Ventura)           |
+| Python Version   | 3.11+                                      |
+| Virtual Env      | `venv` used for isolation                 |
 
 ---
 
@@ -44,73 +43,64 @@ vehicle-parking-space-detection/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/vehicle-parking-space-detection.git
-cd vehicle-parking-space-detection
+git clone https://github.com/your-username/parking-space-counter.git
+cd parking-space-counter
 ```
 
-### 2. Create and Activate Virtual Environment
+### 2. Create Virtual Environment
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-### 3. Install Required Packages
+### 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### 4. Download Required Assets
-
-Download the following files from Google Drive:
-
-- `model.p`
-- `mask_1920_1080.png`
-- `parking_1920_1080_loop.mp4`
-
-📁 [Download Assets](https://drive.google.com/drive/folders/1OMYogGZsoFgQEL2Es6EP2o7ImuwV-xEO?usp=sharing)
-
-Place them in the project root or respective folders.
-
----
-
-## ▶️ How to Run
+### 4. Run the Detector
 
 ```bash
 python main.py
 ```
 
-> Press `q` to exit the video window.
+### 5. Exit the App
+
+> Press `q` while the video window is open.
 
 ---
 
-## ⚙️ How It Works
+## ⚙️ Working Mechanism
 
-### 🧭 Masking
-A binary mask (`mask_1920_1080.png`) defines regions of interest (parking spots) using connected components.
+### 🧩 Masking
 
-### 🔄 Preprocessing
-Each parking spot is:
-- Cropped from the video frame
-- Resized to `(15, 15, 3)`
-- Flattened into a 1D array
+- The binary `mask_1920_1080.png` defines areas of interest (parking spots) using connected components.
+
+### ⚙️ Preprocessing
+
+- Each parking region is extracted, resized to `(15x15x3)`, and flattened.
 
 ### 🧠 Prediction
-The pre-trained SVM model (`model.p`) classifies each spot:
-- `0` → Empty
-- `1` → Occupied
 
-### 🎯 Real-Time Visualization
-- 🟩 **Green box** → Empty spot
-- 🟥 **Red box** → Occupied spot
-- Displays live count of available vs total spots
+A pre-trained SVM model (`model.p`) classifies each spot as:
+
+- `0`: Empty  
+- `1`: Occupied  
+
+### 🔁 Real-Time Feedback
+
+- Frame-by-frame detection overlays:
+  - 🟩 **Green box** — Available
+  - 🟥 **Red box** — Occupied
+- Displays real-time count of free vs total spots.
 
 ---
 
 ## 📜 `requirements.txt`
 
-```
+```text
 opencv-python
 numpy
 matplotlib
@@ -118,7 +108,7 @@ scikit-learn
 scikit-image
 ```
 
-To generate or update this file:
+To create it yourself:
 
 ```bash
 pip freeze > requirements.txt
@@ -126,19 +116,15 @@ pip freeze > requirements.txt
 
 ---
 
-## 🧠 Model Details
+## 🧪 Model Details
 
-| Property        | Details                             |
-|----------------|-------------------------------------|
-| Model Type      | Support Vector Machine (SVM)        |
-| Input Size      | (15, 15, 3)                         |
-| Format          | `.p` file (Pickle format)           |
-| Training Data   | Cropped, labeled parking spot patches |
-| Accuracy        | ~94%                                |
+- **Type**: Support Vector Machine (SVM)
+- **Input Shape**: `(15, 15, 3)`
+- **Trained On**: Manually labeled cropped parking spot patches
+- **Accuracy**: ~94%
+- **File**: `model.p` (stored via Pickle)
 
----
-
-## 🔍 Inference Example
+### 🔍 Inference Example
 
 ```python
 from skimage.transform import resize
@@ -152,34 +138,40 @@ prediction = model.predict([img_resized])
 
 ---
 
-## ✅ Output Examples
+## ✅ Output Example
 
-| Frame | Spot Status   | Box Color | Available Spots | Description                      |
-|-------|---------------|-----------|------------------|----------------------------------|
-| 001   | Empty         | 🟩 Green  | 15 / 20          | Correctly identified as empty    |
-| 024   | Occupied      | 🟥 Red    | 12 / 20          | Detected vehicle entry           |
-| 072   | All Occupied  | 🟥 Red    | 0 / 20           | Parking full                     |
-| 096   | One Vacant    | 🟩 Green  | 1 / 20           | Vehicle exit detected            |
+| Frame | Parking Spot Status | Bounding Box Color | Live Count Display | Notes                                |
+|-------|----------------------|--------------------|---------------------|--------------------------------------|
+| 001   | Empty                | 🟩 Green            | Available: 15 / 20   | Spot correctly detected as empty     |
+| 024   | Occupied             | 🟥 Red              | Available: 12 / 20   | Spot marked as occupied after entry  |
+| 048   | Mixed                | Green & Red        | Available: 10 / 20   | Multiple spots updated in real-time  |
+| 072   | All Occupied         | 🟥 Red              | Available: 0 / 20    | All spots taken — full parking       |
+| 096   | Vehicle Left         | 🟩 Green            | Available: 2 / 20    | Spot marked empty after exit         |
 
 ---
 
 ## 🚀 Future Enhancements
 
-- ⚙️ Upgrade to **YOLOv5 / YOLOv8** for object detection
-- 🌐 Build a **web dashboard** using Flask or Django
-- ☁️ Integrate with **Firebase / MongoDB** for cloud storage
-- 📊 Train on **larger datasets** for better accuracy
+- 🔍 Upgrade to YOLOv5/YOLOv8 for object detection
+- 🌐 Add Flask/Django-based web UI
+- ☁️ Integrate cloud-based updates (Firebase, MongoDB)
+- 📊 Train on larger datasets for better generalization
+
+---
+
+## 🔗 Google Drive Link for Model & Data
+
+[📂 Click here to download `model.p`, `mask_1920_1080.png`, and `parking_1920_1080_loop.mp4`](https://drive.google.com/drive/folders/1OMYogGZsoFgQEL2Es6EP2o7ImuwV-xEO?usp=sharing)
 
 ---
 
 ## 👨‍💻 Developed By
 
 **Penuvarthi Guru Vishnu Sai**  
-*MERN Stack Developer | AI/ML Enthusiast*  
+_MERN Stack Developer | AI/ML Enthusiast_  
 🎓 CSVTU | Specialization: Data Science  
-📫 [LinkedIn](https://linkedin.com/in/your-profile) | 💻 [GitHub](https://github.com/your-username)
-```
+📫 [LinkedIn](https://linkedin.com/in/your-link) • 💻 [GitHub](https://github.com/your-username)
 
 ---
 
-Let me know if you'd like the same treatment for your **Fall Detection System README** too — I can give that a full makeover next!
+Let me know if you'd like a version for `README.md` file export or for your second project (`VisiAge Fall Detection System`) cleaned up in the same style!
