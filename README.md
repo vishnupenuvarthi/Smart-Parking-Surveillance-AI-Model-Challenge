@@ -150,6 +150,11 @@ prediction = model.predict([img_resized])
 
 ---
 
+## ✅ Output Demo video
+
+https://drive.google.com/file/d/16JEqgC9hbhepCynvx6zyhvdRl2oK3IOD/view?usp=sharing
+
+
 ## 🚀 Future Enhancements
 
 - 🔍 Upgrade to YOLOv5/YOLOv8 for object detection
